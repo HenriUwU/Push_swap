@@ -6,7 +6,7 @@
 #    By: hsebille <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 14:48:44 by hsebille          #+#    #+#              #
-#    Updated: 2022/12/08 15:25:35 by hsebille         ###   ########.fr        #
+#    Updated: 2022/12/13 18:17:05 by hsebille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,12 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = push_swap
 
-SRCS = push_swap.c \
+SRCS = push_swap.c swaps.c\
 
 OBJS = $(SRCS:.c=.o)
 
 .c.o:
-	$(CC) $(CFAGS) -c $< -o $(<:.c=.o)
+	$(CC) $(CFAGS) -g -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJS)
 	make -C ./ft_printf && make -C ./libft 
