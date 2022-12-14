@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:13:27 by hsebille          #+#    #+#             */
-/*   Updated: 2022/12/13 18:00:41 by hsebille         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:13:30 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,8 @@
 # include "./libft/libft.h"
 # include "./ft_printf/ft_printf.h"
 
-typedef struct u_list
-{
-	int				content;
-	struct u_list	*next;
-}					t_stack;
-
-void	swap_a(t_stack *stack_a);
-void	swap_b(t_stack *stack_b);
+void	swap_a(int *stack_a);
+void	swap_a(int *stack_b);
+void	swap_s(int *stack_a, int *stack_b);
 
 #endif

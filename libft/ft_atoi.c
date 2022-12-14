@@ -17,9 +17,7 @@ static int	ft_overflow(int negative, long nb)
 	int	check;
 
 	check = 2;
-	if (nb * negative > 2147483647)
-		check = -1;
-	if (nb * negative < -2147483648)
+	if (nb * negative < -2147483648 || nb * negative > 2147483647)
 		check = 0;
 	return (check);
 }
@@ -46,7 +44,7 @@ int	ft_atoi(const char *nptr)
 	{
 		nb = nb * 10 + nptr[i] - '0';
 		i++;
-		if (ft_overflow(negative, nb) == -1 || ft_overflow(negative, nb) == 0)
+		if (ft_overflow(negative, nb) == 0)
 			return (ft_overflow(negative, nb));
 	}
 	return (nb * negative);

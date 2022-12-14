@@ -6,7 +6,7 @@
 #    By: hsebille <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 14:48:44 by hsebille          #+#    #+#              #
-#    Updated: 2022/12/13 18:17:05 by hsebille         ###   ########.fr        #
+#    Updated: 2022/12/14 15:35:37 by hsebille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = push_swap
 
-SRCS = push_swap.c swaps.c\
+SRCS = push_swap.c swaps.c pushes.c utils.c \
 
 OBJS = $(SRCS:.c=.o)
 
