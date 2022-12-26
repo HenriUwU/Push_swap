@@ -6,9 +6,14 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:59:04 by hsebille          #+#    #+#             */
-/*   Updated: 2022/12/14 17:15:24 by hsebille         ###   ########.fr       */
+/*   Updated: 2022/12/26 14:58:07 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	push_a(int *stack_a, int *stack_b)
+{
+	int i;
+	int tmp;
+}

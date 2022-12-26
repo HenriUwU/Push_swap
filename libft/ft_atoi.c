@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:17:21 by hsebille          #+#    #+#             */
-/*   Updated: 2022/10/10 16:06:31 by hsebille         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:32:01 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_overflow(int negative, long nb)
 	return (check);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {	
 	int		i;
 	long	nb;
@@ -42,10 +42,11 @@ int	ft_atoi(const char *nptr)
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		nb = nb * 10 + nptr[i] - '0';
-		i++;
+		nb = nb * 10 + nptr[i++] - '0';
 		if (ft_overflow(negative, nb) == 0)
-			return (ft_overflow(negative, nb));
+			return (2147483648);
 	}
+	if (!((nptr[i - 1] >= '0') && (nptr[i - 1] <= '9')))
+		return (2147483648);
 	return (nb * negative);
 }
