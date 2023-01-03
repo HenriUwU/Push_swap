@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:27:48 by hsebille          #+#    #+#             */
-/*   Updated: 2022/12/26 15:58:27 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:43:20 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,16 @@ int	*normalize(int *stack, int size)
 	free(stack);
 	normalized[i] = -1;
 	return (normalized);
+}
+
+int	ft_arrlen(int *stack)
+{
+	int	i;
+
+	if (!stack)
+		return (0);
+	i = 0;
+	while (stack[i] != -1)
+		i++;
+	return (i);
 }
