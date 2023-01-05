@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:13:27 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/03 17:32:21 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:11:20 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 int		check_duplicate(int *stack_a);
 int		*normalize(int *stack, int size);
 int		ft_arrlen(int *stack);
+int		read_and_stack(char **argv, int *stack_a, int *stack_b);
 void	butterfly(int *stack_a, int *stack_b, int chunk);
+void	sort(int *stack_a, int *stack_b);
 void	swap_a(int *stack_a);
 void	swap_b(int *stack_b);
 void	swap_s(int *stack_a, int *stack_b);

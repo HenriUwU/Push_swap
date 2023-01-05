@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:27:48 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/03 13:43:20 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:48:14 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	*normalize(int *stack, int size)
 
 	i = 0;
 	normalized = malloc(sizeof(int) * size + 1);
+	if (!normalized)
+		return (0);
 	while (i < size - 1)
 	{
 		tracker = 0;
@@ -70,4 +72,44 @@ int	ft_arrlen(int *stack)
 	while (stack[i] != -1)
 		i++;
 	return (i);
+}
+
+char	**read_and_split(char **argv)
+{
+	int		i;
+	int		len;
+	char	*str;
+	char	**strs;
+
+	str = malloc((sizeof(char) * ft_strlen(argv[1] + 1)));
+	if (!str)
+		return (0);
+	ft_strlcpy(str, argv[1], ft_strlen(argv[1]) + 1);
+	i = 2;
+	len = 0;
+	while (argv[len])
+		len++;
+	while (argv[i])
+		str = ft_strjoin(str, argv[i++]);
+	strs = ft_split(str, ' ');
+	return (strs);
+}
+
+int	*into_stack(char **argv, int size)
+{
+	int		i;
+	int		*stack;
+	char	**strs;
+
+	i = 0;
+	strs = read_and_split(argv);
+	stack = malloc(sizeof(int) * size + 1);
+	while (strs[i])
+	{
+		if (ft_atoi(strs[i]) == 2147483648)
+			return (NULL);
+		stack[i] = ft_atoi(strs[i]);
+		i++;
+	}
+	return (stack);
 }
