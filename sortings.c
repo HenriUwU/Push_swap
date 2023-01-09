@@ -6,24 +6,33 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:14:59 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/05 16:13:17 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:51:27 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_biggest(int *stack, int number)
+static int	is_sorted(int *stack_a, int *stack_b)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (stack[i] != -1)
+	j = 0;
+	while (stack_a[i] != -1)
 	{
-		if (stack[i] > number)
-			return (0);
+		j = i + 1;
+		while (stack_a[j] != -1)
+		{
+			if (stack_a[i] > stack_a[j])
+				return (0);
+			j++;
+		}
 		i++;
 	}
-	return (1);
+	if (stack_b[0] == -1)
+		return (1);
+	return (0);
 }
 
 void	butterfly(int *stack_a, int *stack_b, int chunk)
@@ -39,7 +48,7 @@ void	butterfly(int *stack_a, int *stack_b, int chunk)
 	while (stack_a[0] != -1)
 	{
 		i = 0;
-		while (i < data_per_chunk)
+		while (i < data_per_chunk && stack_a[0] != -1)
 		{
 			if (stack_a[0] < tracker)
 			{
@@ -55,19 +64,42 @@ void	butterfly(int *stack_a, int *stack_b, int chunk)
 	}
 }
 
-void	sort(int *stack_a, int *stack_b)
+void	main_sort(int *stack_a, int *stack_b, int chunk, int max)
 {
 	int	i;
+	int	checker;
 
-	i = ft_arrlen(stack_b) - 1;
+	i = 0;
+	if (is_sorted(stack_a, stack_b) == 1)
+	{
+		write(1, "stack a is already sorted\n", 26);
+		return ;
+	}
+	butterfly(stack_a, stack_b, chunk);
 	while (stack_b[0] != -1)
 	{
-		if (is_biggest(stack_b, stack_b[i]) == 1)
+		i = 0;
+		if (stack_b[0] == max - 1)
 		{
 			push_a(stack_a, stack_b);
-			i--;
+			checker = 1;
 		}
-		else
+		if (stack_b[0] == max)
+		{
+			push_a(stack_a, stack_b);
+			if (checker == 1)
+			{
+				swap_a(stack_a);
+				checker = 0;
+				max--;
+			}
+			max--;
+		}
+		while (stack_b[i] != max && stack_b[0] != -1)
+			i++;
+		if (ft_arrlen(stack_b) / 2 > i)
+			rotate_b(stack_b);
+		else if (stack_b[0] != -1)
 			rrotate_b(stack_b);
 	}
 }

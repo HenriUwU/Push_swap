@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:27:48 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/05 17:48:14 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:48:43 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,42 +74,38 @@ int	ft_arrlen(int *stack)
 	return (i);
 }
 
-char	**read_and_split(char **argv)
+char	**into_array(char **argv)
 {
-	int		i;
-	int		len;
 	char	*str;
 	char	**strs;
+	int		i;
 
-	str = malloc((sizeof(char) * ft_strlen(argv[1] + 1)));
+	str = malloc(sizeof(char) * ft_strlen(argv[1] + 1));
 	if (!str)
-		return (0);
+		return (NULL);
 	ft_strlcpy(str, argv[1], ft_strlen(argv[1]) + 1);
 	i = 2;
-	len = 0;
-	while (argv[len])
-		len++;
 	while (argv[i])
 		str = ft_strjoin(str, argv[i++]);
 	strs = ft_split(str, ' ');
 	return (strs);
 }
 
-int	*into_stack(char **argv, int size)
+int	*into_stack(char **strs, int size)
 {
-	int		i;
-	int		*stack;
-	char	**strs;
+	int	*stack_a;
+	int	i;
 
 	i = 0;
-	strs = read_and_split(argv);
-	stack = malloc(sizeof(int) * size + 1);
+	stack_a = malloc(sizeof(int) * size + 1);
+	if (!stack_a)
+		return (NULL);
 	while (strs[i])
 	{
 		if (ft_atoi(strs[i]) == 2147483648)
 			return (NULL);
-		stack[i] = ft_atoi(strs[i]);
+		stack_a[i] = ft_atoi(strs[i]);
 		i++;
 	}
-	return (stack);
+	return (stack_a);
 }
