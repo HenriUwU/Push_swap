@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:53:22 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/09 16:11:31 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:34:13 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	int		size;
 
 	size = 0;
-	strs = into_array(argv);
+	strs = into_array(argc, argv);
 	while (strs[size])
 		size++;
 	if (into_stack(strs, size) == NULL)
@@ -46,6 +46,17 @@ int	main(int argc, char **argv)
 		return (write(2, "Error\n", 6));
 	stack_a = normalize(stack_a, size + 1);
 	stack_b[0] = -1;
-	main_sort(stack_a, stack_b, 3, size - 1);
+	if (!stack_a || !stack_b)
+		return (0);
+	if (size > 3 && size <= 100)
+		main_sort(stack_a, stack_b, 3, size - 1);
+	else if (size > 100 && size <= 200)
+		main_sort(stack_a, stack_b, 4, size - 1);
+	else if (size > 200 && size <= 300)
+		main_sort(stack_a, stack_b, 5, size - 1);
+	else if (size > 300 && size <= 400)
+		main_sort(stack_a, stack_b, 6, size - 1);
+	else
+		main_sort(stack_a, stack_b, 8, size - 1);
 	print_stacks(stack_a, stack_b, size + 1);
 }

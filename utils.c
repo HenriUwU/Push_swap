@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:27:48 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/09 12:48:43 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:41:41 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,29 @@ int	ft_arrlen(int *stack)
 	return (i);
 }
 
-char	**into_array(char **argv)
+char	**into_array(int argc, char **argv)
 {
 	char	*str;
 	char	**strs;
 	int		i;
+	int		len;
 
-	str = malloc(sizeof(char) * ft_strlen(argv[1] + 1));
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, argv[1], ft_strlen(argv[1]) + 1);
-	i = 2;
-	while (argv[i])
-		str = ft_strjoin(str, argv[i++]);
+	len = 1;
+	i = 1;
+	while (i < argc)
+	{
+		len += ft_strlen(argv[i]);
+		len += 1;
+		i++;
+	}
+	str = ft_calloc(len, sizeof(char));
+	i = 1;
+	while (i < argc)
+	{
+		ft_strlcat(str, argv[i], len);
+		ft_strlcat(str, " ", len);
+		i++;
+	}
 	strs = ft_split(str, ' ');
 	return (strs);
 }

@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 15:32:46 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/09 15:59:55 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:19:26 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*ft_strjoin(char *s1, char const *s2)
 	j = 0;
 	if (!s1 || !s2)
 	{
-		free(s1);
 		return (NULL);
 	}
 	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
@@ -35,5 +34,6 @@ char	*ft_strjoin(char *s1, char const *s2)
 	while (s2[i])
 		dest[j++] = s2[i++];
 	dest[j] = '\0';
+	free(s1);
 	return (dest);
 }

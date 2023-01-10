@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:13:27 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/09 15:21:29 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:32:56 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		check_duplicate(int *stack_a);
 int		*normalize(int *stack, int size);
 int		ft_arrlen(int *stack);
 int		*into_stack(char **strs, int size);
-char	**into_array(char **argv);
+char	**into_array(int argc, char **argv);
 void	main_sort(int *stack_a, int *stack_b, int chunk, int max);
 void	sort(int *stack_a, int *stack_b);
 void	swap_a(int *stack_a);

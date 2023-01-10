@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 17:32:40 by hsebille          #+#    #+#             */
-/*   Updated: 2022/10/10 15:32:23 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:11:14 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	strcount(char const *s, char c)
 	int	i;
 	int	count;
 
+	if (!s || !c)
+		return (0);
 	i = 0;
 	count = 0;
 	while (s[i])
