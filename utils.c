@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:27:48 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/10 17:41:41 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:01:59 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,16 @@ char	**into_array(int argc, char **argv)
 		i++;
 	}
 	str = ft_calloc(len, sizeof(char));
+	if (!str)
+		return (NULL);
 	i = 1;
 	while (i < argc)
 	{
-		ft_strlcat(str, argv[i], len);
+		ft_strlcat(str, argv[i++], len);
 		ft_strlcat(str, " ", len);
-		i++;
 	}
 	strs = ft_split(str, ' ');
+	free (str);
 	return (strs);
 }
 
@@ -107,15 +109,26 @@ int	*into_stack(char **strs, int size)
 	int	i;
 
 	i = 0;
-	stack_a = malloc(sizeof(int) * size + 1);
+	stack_a = ft_calloc(sizeof(int), size + 1);
 	if (!stack_a)
 		return (NULL);
 	while (strs[i])
 	{
 		if (ft_atoi(strs[i]) == 2147483648)
+		{
+			i = 0;
+			while (strs[i])
+				free(strs[i++]);
+			free(strs);
+			free(stack_a);
 			return (NULL);
+		}
 		stack_a[i] = ft_atoi(strs[i]);
 		i++;
 	}
+	i = 0;
+	while (strs[i])
+		free(strs[i++]);
+	free(strs);
 	return (stack_a);
 }

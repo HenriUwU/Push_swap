@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:14:59 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/10 15:33:04 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:30:52 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	is_sorted(int *stack_a, int *stack_b)
 	return (0);
 }
 
-void	butterfly(int *stack_a, int *stack_b, int chunk)
+static void	butterfly(int *stack_a, int *stack_b, int chunk)
 {
 	int	i;
 	int	tracker;
@@ -70,9 +70,10 @@ void	main_sort(int *stack_a, int *stack_b, int chunk, int max)
 	int	checker;
 
 	i = 0;
+	checker = 0;
 	if (is_sorted(stack_a, stack_b) == 1)
 	{
-		write(1, "stack a is already sorted\n", 26);
+		write(1, "Error\n", 6);
 		return ;
 	}
 	butterfly(stack_a, stack_b, chunk);
