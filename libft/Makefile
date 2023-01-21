@@ -6,11 +6,11 @@
 #    By: hsebille <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/30 16:05:07 by hsebille          #+#    #+#              #
-#    Updated: 2022/10/13 12:29:17 by hsebille         ###   ########.fr        #
+#    Updated: 2023/01/18 15:27:55 by hsebille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = clang
 CFLAGS = -Wall -Werror -Wextra
 
 NAME = libft.a

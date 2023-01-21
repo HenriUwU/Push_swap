@@ -6,72 +6,36 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:27:48 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/12 15:01:59 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/21 11:09:30 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_duplicate(int *stack_a)
+static int	no_digit(char *str)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	while (stack_a[i])
+	while (str[i])
 	{
-		j = i + 1;
-		while (stack_a[j])
-		{
-			if (stack_a[i] == stack_a[j])
-				return (1);
-			j++;
-		}
+		if (ft_isdigit(str[i]) == 2048)
+			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int	*normalize(int *stack, int size)
+static char	**check(char **strs, char *str)
 {
-	int	i;
-	int	j;
-	int	tracker;
-	int	*normalized;
-
-	i = 0;
-	normalized = malloc(sizeof(int) * size + 1);
-	if (!normalized)
-		return (0);
-	while (i < size - 1)
+	if (ft_strlen(str) == 0 || no_digit(str) == 0)
 	{
-		tracker = 0;
-		j = 0;
-		while (j < size - 1)
-		{
-			if (stack[i] > stack[j])
-				tracker++;
-			j++;
-		}
-		normalized[i] = tracker;
-		i++;
+		free(str);
+		return (NULL);
 	}
-	free(stack);
-	normalized[i] = -1;
-	return (normalized);
-}
-
-int	ft_arrlen(int *stack)
-{
-	int	i;
-
-	if (!stack)
-		return (0);
-	i = 0;
-	while (stack[i] != -1)
-		i++;
-	return (i);
+	strs = ft_split(str, ' ');
+	free(str);
+	return (strs);
 }
 
 char	**into_array(int argc, char **argv)
@@ -83,6 +47,7 @@ char	**into_array(int argc, char **argv)
 
 	len = 1;
 	i = 1;
+	strs = NULL;
 	while (i < argc)
 	{
 		len += ft_strlen(argv[i]);
@@ -98,9 +63,21 @@ char	**into_array(int argc, char **argv)
 		ft_strlcat(str, argv[i++], len);
 		ft_strlcat(str, " ", len);
 	}
-	strs = ft_split(str, ' ');
-	free (str);
+	strs = check(strs, str);
 	return (strs);
+}
+
+static void	free_strs(char **strs)
+{
+	int	i;
+
+	i = 0;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
 }
 
 int	*into_stack(char **strs, int size)
@@ -112,23 +89,17 @@ int	*into_stack(char **strs, int size)
 	stack_a = ft_calloc(sizeof(int), size + 1);
 	if (!stack_a)
 		return (NULL);
-	while (strs[i])
+	while (i < size)
 	{
 		if (ft_atoi(strs[i]) == 2147483648)
 		{
-			i = 0;
-			while (strs[i])
-				free(strs[i++]);
-			free(strs);
+			free_strs(strs);
 			free(stack_a);
 			return (NULL);
 		}
 		stack_a[i] = ft_atoi(strs[i]);
 		i++;
 	}
-	i = 0;
-	while (strs[i])
-		free(strs[i++]);
-	free(strs);
+	free_strs(strs);
 	return (stack_a);
 }

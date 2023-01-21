@@ -1,18 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushes.c                                           :+:      :+:    :+:   */
+/*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 18:59:04 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/16 15:51:13 by hsebille         ###   ########.fr       */
+/*   Created: 2023/01/18 18:19:06 by hsebille          #+#    #+#             */
+/*   Updated: 2023/01/20 14:32:50 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_b(int *stack_a, int *stack_b)
+void	swap_bonus(int *stack)
+{
+	int	tmp;
+
+	tmp = stack[1];
+	stack[1] = stack[0];
+	stack[0] = tmp;
+}
+
+void	swap_s_bonus(int *stack_a, int *stack_b)
+{
+	int	tmp;
+
+	tmp = stack_a[1];
+	stack_a[1] = stack_a[0];
+	stack_a[0] = tmp;
+	tmp = stack_b[1];
+	stack_b[1] = stack_b[0];
+	stack_b[0] = tmp;
+}
+
+void	push_b_bonus(int *stack_a, int *stack_b)
 {
 	int	i;
 
@@ -29,13 +50,11 @@ void	push_b(int *stack_a, int *stack_b)
 		stack_a[i] = stack_a[i + 1];
 		i++;
 	}
-	write (1, "pb\n", 3);
 }
 
-void	push_a(int *stack_a, int *stack_b)
+void	push_a_bonus(int *stack_a, int *stack_b)
 {
 	ft_memmove(stack_a + 1, stack_a, sizeof(int) * ft_arrlen(stack_a));
 	stack_a[0] = stack_b[0];
 	ft_memmove(stack_b, stack_b + 1, sizeof(int) * ft_arrlen(stack_b));
-	write (1, "pa\n", 3);
 }

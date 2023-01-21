@@ -6,13 +6,13 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:14:59 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/12 14:30:52 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:29:05 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_sorted(int *stack_a, int *stack_b)
+int	is_sorted(int *stack_a, int *stack_b)
 {
 	int	i;
 	int	j;
@@ -64,19 +64,22 @@ static void	butterfly(int *stack_a, int *stack_b, int chunk)
 	}
 }
 
-void	main_sort(int *stack_a, int *stack_b, int chunk, int max)
+static void	in_loop(int *stack_b, int max, int i)
+{
+	while (stack_b[i] != max && stack_b[0] != -1)
+		i++;
+	if (ft_arrlen(stack_b) / 2 > i)
+		rotate_b(stack_b);
+	else if (stack_b[0] != -1)
+		rrotate_b(stack_b);
+}
+
+static void	sorting_loop(int *stack_a, int *stack_b, int max)
 {
 	int	i;
 	int	checker;
 
-	i = 0;
 	checker = 0;
-	if (is_sorted(stack_a, stack_b) == 1)
-	{
-		write(1, "Error\n", 6);
-		return ;
-	}
-	butterfly(stack_a, stack_b, chunk);
 	while (stack_b[0] != -1)
 	{
 		i = 0;
@@ -96,11 +99,19 @@ void	main_sort(int *stack_a, int *stack_b, int chunk, int max)
 			}
 			max--;
 		}
-		while (stack_b[i] != max && stack_b[0] != -1)
-			i++;
-		if (ft_arrlen(stack_b) / 2 > i)
-			rotate_b(stack_b);
-		else if (stack_b[0] != -1)
-			rrotate_b(stack_b);
+		in_loop(stack_b, max, i);
 	}
+}
+
+void	main_sort(int *stack_a, int *stack_b, int chunk, int max)
+{
+	int	i;
+	int	checker;
+
+	i = 0;
+	checker = 0;
+	if (is_sorted(stack_a, stack_b) == 1)
+		return ;
+	butterfly(stack_a, stack_b, chunk);
+	sorting_loop(stack_a, stack_b, max);
 }
