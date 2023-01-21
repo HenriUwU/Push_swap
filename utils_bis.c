@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:32:13 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/21 11:30:20 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/21 14:56:30 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	check_duplicate(int *stack_a)
 		}
 		i++;
 	}
+	if (stack_a[0] == 0 && stack_a[1] == 0)
+		return (1);
 	return (0);
 }
 

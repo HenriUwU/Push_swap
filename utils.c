@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:27:48 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/21 11:09:30 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/21 14:34:37 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	no_digit(char *str)
 
 static char	**check(char **strs, char *str)
 {
-	if (ft_strlen(str) == 0 || no_digit(str) == 0)
+	if (no_digit(str) == 0)
 	{
 		free(str);
 		return (NULL);

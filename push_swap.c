@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:53:22 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/21 11:30:53 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/21 14:50:47 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ static void	sort(int *stack_a, int *stack_b, int size)
 		main_sort(stack_a, stack_b, 8, size - 1);
 }
 
+static void	free_stacks(int *stack_a, int *stack_b)
+{
+	free(stack_a);
+	free(stack_b);
+}
+
 int	main(int argc, char **argv)
 {
 	char	**strs;
@@ -43,6 +49,8 @@ int	main(int argc, char **argv)
 	int		*stack_b;
 	int		size;
 
+	if (argc == 1)
+		return (0);
 	size = 0;
 	strs = into_array(argc, argv);
 	if (strs == NULL)
@@ -60,7 +68,5 @@ int	main(int argc, char **argv)
 		return (0);
 	stack_b[0] = -1;
 	sort(stack_a, stack_b, size);
-	free(stack_a);
-	free(stack_b);
-	return (0);
+	free_stacks(stack_a, stack_b);
 }

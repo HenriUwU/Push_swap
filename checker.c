@@ -6,11 +6,17 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:59:31 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/21 11:23:43 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/21 14:53:43 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	free_stacks(int *stack_a, int *stack_b)
+{
+	free(stack_a);
+	free(stack_b);
+}
 
 int	main(int argc, char **argv)
 {
@@ -19,6 +25,8 @@ int	main(int argc, char **argv)
 	int		*stack_b;
 	int		size;
 
+	if (argc == 1)
+		return (0);
 	size = 0;
 	strs = into_array(argc, argv);
 	if (strs == NULL)
@@ -36,7 +44,5 @@ int	main(int argc, char **argv)
 		return (0);
 	stack_b[0] = -1;
 	sort_bonus(stack_a, stack_b);
-	free(stack_a);
-	free(stack_b);
-	return (0);
+	free_stacks(stack_a, stack_b);
 }

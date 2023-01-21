@@ -6,7 +6,7 @@
 /*   By: hsebille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 18:23:09 by hsebille          #+#    #+#             */
-/*   Updated: 2023/01/20 14:36:06 by hsebille         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:07:44 by hsebille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	rotate_bonus(int *stack)
 	int	i;
 	int	tmp;
 
+	if (stack[0] == -1)
+		return ;
 	i = 0;
 	tmp = stack[0];
 	while (stack[i] != -1)
@@ -33,6 +35,8 @@ void	rotate_r_bonus(int *stack_a, int *stack_b)
 	int	i;
 	int	tmp;
 
+	if (stack_a[0] == -1 || stack_b[0] == -1)
+		return ;
 	i = 0;
 	tmp = stack_a[0];
 	while (stack_a[i] != -1)
@@ -58,6 +62,8 @@ void	rrotate_bonus(int *stack)
 	int	tmp;
 	int	len;
 
+	if (stack[0] == -1)
+		return ;
 	len = ft_arrlen(stack);
 	tmp = stack[len - 1];
 	while (len > 0)
@@ -74,6 +80,8 @@ void	rrotate_r_bonus(int *stack_a, int *stack_b)
 	int	tmp;
 	int	len;
 
+	if (stack_a[0] == -1 || stack_b[0] == -1)
+		return ;
 	len = ft_arrlen(stack_a);
 	tmp = stack_a[len - 1];
 	while (len > 0)
